@@ -34,7 +34,7 @@ class Brush_Royal_Final : public AppBasic {
 	void draw();
 	void prepareSettings(Settings* settings);
 private:
-	static const int kWinWidth = 800;
+	static const int kWinWidth = 600;
 	static const int kWinHeight = 600;
 	static const int kSurfaceSize=1024;
 	Surface* mySurface_;
@@ -56,7 +56,7 @@ void Brush_Royal_Final::setup()
 void Brush_Royal_Final::prepareSettings(Settings *settings){
 	(*settings).setWindowSize(kWinHeight, kWinWidth);
 	(*settings).setResizable(false);
-	(*settings).setFullScreen(false);
+	//(*settings).setFullScreen(false);
 }
 
 void Brush_Royal_Final::mouseDown( MouseEvent event )
@@ -78,10 +78,11 @@ void Brush_Royal_Final::draw()
 	for(int i = 0; i < 5; i++){
 		data = list->getData(i);
 		if(data == 1){
-			// draw a shape
+			
 		}
 		else if(data == 2){
-
+			gl::color(Color8u(0,50,0));
+			gl::drawColorCube(Vec3f(500,200,100), Vec3f(100,100,100));
 		}
 		else if(data == 3){
 
@@ -93,6 +94,7 @@ void Brush_Royal_Final::draw()
 			// do nothing
 		}
 	}
+	
 }
 
 CINDER_APP_BASIC( Brush_Royal_Final, RendererGl )
