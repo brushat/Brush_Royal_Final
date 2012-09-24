@@ -9,8 +9,6 @@
 * which means you are free to use, share, and remix it as long as you
 * give attribution. Commercial uses are allowed.
 * 
-* This program satisfies the following requirements for HW02:
-* 
 * 
 */
 
@@ -21,6 +19,8 @@
 #include "Resources.h"
 #include "boost/date_time/posix_time/posix_time.hpp"
 #include "LinkedList.h"
+#include "cinder/gl/Texture.h"
+#include "cinder/Text.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -33,6 +33,11 @@ class Brush_Royal_Final : public AppBasic {
 	void update();
 	void draw();
 	void prepareSettings(Settings* settings);
+	void keyDown(KeyEvent event);
+	void render();
+	gl::Texture mTextTexture;
+	Vec2f mSize;
+	Font mFont;
 private:
 	static const int kWinWidth = 600;
 	static const int kWinHeight = 600;
@@ -51,6 +56,10 @@ void Brush_Royal_Final::setup()
 	list->addNode(2);
 	list->addNode(3);
 	list->addNode(4);
+
+	mFont = Font( "Times New Roman", 40 );
+	mSize = Vec2f( 600, 600 );
+	render();
 }
 
 void Brush_Royal_Final::prepareSettings(Settings *settings){
@@ -59,9 +68,26 @@ void Brush_Royal_Final::prepareSettings(Settings *settings){
 	//(*settings).setFullScreen(false);
 }
 
+void Brush_Royal_Final::keyDown(KeyEvent event){
+	if(event.getChar() == 'r'){
+		list->reverse();
+	}
+	else if(event.getChar() == '?'){
+		if(help == false)
+		help = true;
+		else help = false;
+	}
+}
 void Brush_Royal_Final::mouseDown( MouseEvent event )
 {
 
+}
+
+void Brush_Royal_Final::render(){
+	string txt = "WELCOME\n TO THE ROYAL SOCIETY\nFOR PUTTING THINGS\n ON TOP OF \nOTHER THINGS!!\n\nPress ? to show/hide the help screen\nPress r to reverse the order of the shapes";
+	TextBox tbox = TextBox().alignment(TextBox::CENTER).font(mFont).size(Vec2i( mSize.x, mSize.y ) ).text( txt );
+	tbox.setBackgroundColor( ColorA( 0.0f, 0.0f, 0.0f ) );
+	mTextTexture = gl::Texture( tbox.render() );
 }
 
 void Brush_Royal_Final::update()
@@ -72,27 +98,38 @@ void Brush_Royal_Final::update()
 void Brush_Royal_Final::draw()
 {
 	// clear out the window with black
-	gl::clear( Color( 0, 0, 0 ) );
+	//gl::clear( Color( 0, 0, 0 ) );
 	gl::draw(*mySurface_);
 	int data;
 	for(int i = 0; i < 5; i++){
+		//can't get getData() to work!!!
 		data = list->getData(i);
 		if(data == 1){
-			
+			gl::color(Color(0,1,0));
+			gl::drawSolidRect(Rectf(0,100,200,300),false);
 		}
 		else if(data == 2){
 			gl::color(Color8u(0,50,0));
-			gl::drawColorCube(Vec3f(500,200,100), Vec3f(100,100,100));
+			gl::drawColorCube(Vec3f(500,300,100), Vec3f(100,100,100));
 		}
 		else if(data == 3){
-
+			gl::color(Color(0,1,0));
+			gl::drawSolidRect(Rectf(300,300,400,500),false);
+			//gl::color(Color(0,1,0));
+			//gl::drawCube(Vec3f(300,300,300), Vec3f(300,300,300));
 		}
 		else if(data == 4){
-
+			gl::color(Color(0,0,1));
+			gl::drawSolidCircle(Vec2f(300,300),300);
+			//gl::drawCube(Vec3f(100,100,1),Vec3f(400,400,400));
 		}
 		else{
 			// do nothing
 		}
+	}
+	if(help == true && mTextTexture){
+		gl::color(Color(0,1,0));
+		gl::draw(mTextTexture);
 	}
 	
 }

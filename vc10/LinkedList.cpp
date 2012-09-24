@@ -27,18 +27,25 @@ void LinkedList::addNode(int info){
 int LinkedList::getData(int index){
 	int i = 0;
 	Node* pointer = head_;
-	while(pointer->next != head_){
+	while(i < index && pointer->next != head_){
 		Node* temp = pointer;
 		pointer = pointer->next;
 		i++;
 	}
-	return pointer->data;
+	return pointer->next->data;
 }
 
 void LinkedList::reorder(){
-
+	
 }
 
 void LinkedList::reverse(){
-
+	Node* current = head_;
+	do{
+		Node* temp = current->next;
+		current->next=current->prev;
+		current->prev=temp;
+		current = current->prev;
+	}
+	while(current != head_);
 }
