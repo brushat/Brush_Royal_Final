@@ -20,6 +20,9 @@ LinkedList::LinkedList(){
 * Adds a node to the left of the head node and makes the
 * necessary adjustments to the prev and next data for all nodes
 * invovled in the addition
+* 
+* Idea for addNode came from:
+* http://www.dreamincode.net/forums/topic/251223-circular-double-linked-list-insert-method-problem/
 */
 void LinkedList::addNode(int info){
 	if( head_==NULL ) {
@@ -78,7 +81,11 @@ void LinkedList::cycle(){
 	}
 }
 /*
-* Reverses the order of the list.  This code was based off of Dr. Brinkman's
+* Reverses the order of the items in the list.  Head becomes tail and so on
+* through the entire list.  Note: this is not the most efficient solution
+* because it has to loop through the list each time (wastes memory)
+* 
+* This code was based off of Dr. Brinkman's
 * class lecture on how to implement reverse for singly and doubly linke lists
 */
 void LinkedList::reverse(){
