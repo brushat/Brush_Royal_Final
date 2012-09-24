@@ -57,7 +57,7 @@ void Brush_Royal_Final::setup()
 	list->addNode(3);
 	list->addNode(4);
 
-	mFont = Font( "Times New Roman", 40 );
+	mFont = Font( "Courier New", 40 );
 	mSize = Vec2f( 600, 600 );
 	render();
 }
@@ -68,9 +68,17 @@ void Brush_Royal_Final::prepareSettings(Settings *settings){
 	//(*settings).setFullScreen(false);
 }
 
+/* 
+* This method handles keyboard clicks.  Clicking 'r' will reverse the order of the list, 
+* clicking '?' will close or open the help textbox, and clicking 'c' will cycle the list.
+* 
+*/
 void Brush_Royal_Final::keyDown(KeyEvent event){
 	if(event.getChar() == 'r'){
 		list->reverse();
+	}
+	else if(event.getChar() == 'c'){
+		list->cycle();
 	}
 	else if(event.getChar() == '?'){
 		if(help == false)
@@ -83,8 +91,14 @@ void Brush_Royal_Final::mouseDown( MouseEvent event )
 
 }
 
+/*
+* Adds a textbox help screen to the program which can be turned off and on by clicking '?'
+* 
+* This codes was based heavily on the sample code that Cinder provides to show how to use
+* a TextBox()
+*/
 void Brush_Royal_Final::render(){
-	string txt = "WELCOME\n TO THE ROYAL SOCIETY\nFOR PUTTING THINGS\n ON TOP OF \nOTHER THINGS!!\n\nPress ? to show/hide the help screen\nPress r to reverse the order of the shapes";
+	string txt = "WELCOME\n TO THE ROYAL SOCIETY\nFOR PUTTING THINGS\n ON TOP OF \nOTHER THINGS!!\n\nPress ? to show/hide the help screen\nPress r to reverse the order of the shapes\nPress c to cycle the shapes";
 	TextBox tbox = TextBox().alignment(TextBox::CENTER).font(mFont).size(Vec2i( mSize.x, mSize.y ) ).text( txt );
 	tbox.setBackgroundColor( ColorA( 0.0f, 0.0f, 0.0f ) );
 	mTextTexture = gl::Texture( tbox.render() );
@@ -105,7 +119,7 @@ void Brush_Royal_Final::draw()
 		//can't get getData() to work!!!
 		data = list->getData(i);
 		if(data == 1){
-			gl::color(Color(0,1,0));
+			gl::color(Color((float) rand()/RAND_MAX,(float) rand()/RAND_MAX,(float) rand()/RAND_MAX));
 			gl::drawSolidRect(Rectf(0,100,200,300),false);
 		}
 		else if(data == 2){
@@ -121,12 +135,14 @@ void Brush_Royal_Final::draw()
 		else if(data == 4){
 			gl::color(Color(0,0,1));
 			gl::drawSolidCircle(Vec2f(300,300),300);
-			//gl::drawCube(Vec3f(100,100,1),Vec3f(400,400,400));
+			
 		}
 		else{
 			// do nothing
 		}
 	}
+
+	// tells gl whether or not user wants to see the help textbox
 	if(help == true && mTextTexture){
 		gl::color(Color(0,1,0));
 		gl::draw(mTextTexture);
