@@ -35,10 +35,18 @@ int LinkedList::getData(int index){
 	return pointer->next->data;
 }
 
-void LinkedList::reorder(){
+/*
+* 
+*
+*/
+void LinkedList::cycle(){
 	
 }
-
+/*
+* Reverses the order of the list.  This code was based off of Dr. Brinkman's
+* class lecture on how to implement reverse for singly and doubly linke lists
+*
+*/
 void LinkedList::reverse(){
 	Node* current = head_;
 	do{

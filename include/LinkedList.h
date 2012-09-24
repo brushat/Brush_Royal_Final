@@ -13,6 +13,6 @@ class LinkedList {
 		LinkedList();
 		void addNode(int info);
 		int getData(int index);
-		void reorder();
+		void cycle();
 		void reverse();
 };
