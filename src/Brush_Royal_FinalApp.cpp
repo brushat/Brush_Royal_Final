@@ -1,14 +1,17 @@
 /** 
-* @RoyalSocietyApp.cpp
-* A simple app to display a cat picture using cinder
+* @file Brush_Royal_FinalApp
 * 
 * @author Adam Brush
-* @date 2012-09-09
+* @date 2012-09-23
 * 
 * @note This file is (c) 2012. It is licensed under the
 * CC BY 3.0 licenses (http://creativecommons.org/licenses/by/3.0/),
 * which means you are free to use, share, and remix it as long as you
 * give attribution. Commercial uses are allowed.
+* 
+* This program satisfies the following requirements for HW02:
+* 
+* 
 */
 
 #include "cinder/app/AppBasic.h"
@@ -36,11 +39,17 @@ private:
 	static const int kSurfaceSize=1024;
 	Surface* mySurface_;
 	LinkedList* list;
+	bool help;
 };
 
 void Brush_Royal_Final::setup()
 {
-
+	mySurface_ = new Surface(kWinWidth,kWinHeight,false);
+	help = true;
+	list->addNode(1);
+	list->addNode(2);
+	list->addNode(3);
+	list->addNode(4);
 }
 
 void Brush_Royal_Final::prepareSettings(Settings *settings){
@@ -64,6 +73,24 @@ void Brush_Royal_Final::draw()
 	// clear out the window with black
 	gl::clear( Color( 0, 0, 0 ) );
 	gl::draw(*mySurface_);
+	int data;
+	for(int i = 0; i < 5; i++){
+		if(data == 1){
+			// draw a shape
+		}
+		else if(data == 2){
+
+		}
+		else if(data == 3){
+
+		}
+		else if(data == 4){
+
+		}
+		else{
+			// do nothing
+		}
+	}
 }
 
 CINDER_APP_BASIC( Brush_Royal_Final, RendererGl )

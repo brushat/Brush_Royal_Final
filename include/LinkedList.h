@@ -1,17 +1,18 @@
 struct Node{
 	int data;
 	Node* next;
-	Node(int x, Node* y) : data(x), next(y){}
+	Node* prev;
+	Node(int x, Node* n, Node* p) : data(x), next(n), prev(p){}
 };
 
 class LinkedList {
 	private:
-		Node *sentinel_;
+		Node *head_;
 		int num_items_;
 	public:
-		LinkedList() : sentinel_() {}
+		LinkedList() : head_() {}
 		void addNode(int info);
-		Node* getIndex(int index);
+		int getData(int index);
 		void reorder();
 		void reverse();
 };
