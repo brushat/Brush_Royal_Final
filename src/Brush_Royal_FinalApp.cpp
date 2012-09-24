@@ -9,7 +9,6 @@
 * which means you are free to use, share, and remix it as long as you
 * give attribution. Commercial uses are allowed.
 * 
-* 
 */
 
 #include "cinder/app/AppBasic.h"
@@ -47,6 +46,11 @@ private:
 	bool help;
 };
 
+/*
+* Initializes all of the necessary variables and objects needed for
+* our text box and drawing methods
+* 
+*/
 void Brush_Royal_Final::setup()
 {
 	mySurface_ = new Surface(kWinWidth,kWinHeight,false);
@@ -119,8 +123,10 @@ void Brush_Royal_Final::draw()
 		//can't get getData() to work!!!
 		data = list->getData(i);
 		if(data == 1){
-			gl::color(Color((float) rand()/RAND_MAX,(float) rand()/RAND_MAX,(float) rand()/RAND_MAX));
-			gl::drawSolidRect(Rectf(0,100,200,300),false);
+			gl::color(Color(0,0,1));
+			gl::drawSolidRect(Rectf(380,300,580,500),false);
+			gl::color(Color(1,0,0));
+			gl::drawSolidRect(Rectf(400,320,600,520),false);
 		}
 		else if(data == 2){
 			gl::color(Color8u(0,50,0));
@@ -133,9 +139,14 @@ void Brush_Royal_Final::draw()
 			//gl::drawCube(Vec3f(300,300,300), Vec3f(300,300,300));
 		}
 		else if(data == 4){
-			gl::color(Color(0,0,1));
-			gl::drawSolidCircle(Vec2f(300,300),300);
-			
+			gl::color(Color(Color((float) rand()/RAND_MAX,(float) rand()/RAND_MAX,(float) rand()/RAND_MAX)));
+			gl::drawSolidCircle(Vec2f(300,300),200);
+			gl::color(Color(0,1,0));
+			gl::drawSolidCircle(Vec2f(300,300),150);
+			gl::color(Color(Color((float) rand()/RAND_MAX,(float) rand()/RAND_MAX,(float) rand()/RAND_MAX)));
+			gl::drawSolidCircle(Vec2f(300,300),100);
+			gl::color(Color(0,1,0));
+			gl::drawSolidCircle(Vec2f(300,300),50);
 		}
 		else{
 			// do nothing

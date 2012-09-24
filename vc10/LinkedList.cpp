@@ -7,7 +7,10 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-
+/* 
+* Create a linked list with the head_ set to Null and the number of items
+* set at 0.  Head is initially not counted as an item because it has no data to begin
+*/
 LinkedList::LinkedList(){
 	head_ = NULL;
 	num_items_ = 0;
@@ -77,7 +80,6 @@ void LinkedList::cycle(){
 /*
 * Reverses the order of the list.  This code was based off of Dr. Brinkman's
 * class lecture on how to implement reverse for singly and doubly linke lists
-*
 */
 void LinkedList::reverse(){
 	Node* current = head_;
@@ -88,4 +90,6 @@ void LinkedList::reverse(){
 		current = current->prev;
 	}
 	while(current != head_);
+	//Not sure why reverse isn't working, I think it still has something to do with the getData
+	//method
 }
