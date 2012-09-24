@@ -8,13 +8,20 @@ using namespace ci::app;
 using namespace std;
 
 
+LinkedList::LinkedList(){
+	head_ = NULL;
+	num_items_ = 0;
+}
+
 void LinkedList::addNode(int info){
-	Node* node = new Node(info, NULL, NULL);
-	node->prev = head_->prev;
-	node->next = head_;
-	head_->prev->next = node;
-	head_->prev = node;
-	num_items_++;
+	if( head_==NULL ) {
+        head_ = new Node(info, NULL, NULL);
+        head_->next = head_->prev = head_; 
+    } else {
+        Node *node = new Node(info, head_->prev, head_);
+        node->prev->next = node;
+        node->next->prev = node;
+        }
 }
 
 int LinkedList::getData(int index){

@@ -10,7 +10,7 @@ class LinkedList {
 		Node *head_;
 		int num_items_;
 	public:
-		LinkedList() : head_() {}
+		LinkedList();
 		void addNode(int info);
 		int getData(int index);
 		void reorder();

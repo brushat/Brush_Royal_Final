@@ -46,6 +46,7 @@ void Brush_Royal_Final::setup()
 {
 	mySurface_ = new Surface(kWinWidth,kWinHeight,false);
 	help = true;
+	list = new LinkedList();
 	list->addNode(1);
 	list->addNode(2);
 	list->addNode(3);
@@ -75,6 +76,7 @@ void Brush_Royal_Final::draw()
 	gl::draw(*mySurface_);
 	int data;
 	for(int i = 0; i < 5; i++){
+		data = list->getData(i);
 		if(data == 1){
 			// draw a shape
 		}
