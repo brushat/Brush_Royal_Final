@@ -9,6 +9,10 @@
 * which means you are free to use, share, and remix it as long as you
 * give attribution. Commercial uses are allowed.
 * 
+* 
+* I based the framework for some parts of this project off of CBMiami019 because I couldn't figure out how 
+* to actually implement the LinkedList.h part of the assignment.  However, I chose to do a doubly linked, circular 
+* list because it is the one that made the most sense to me in class.
 */
 
 #include "cinder/app/AppBasic.h"
@@ -76,6 +80,7 @@ void Brush_Royal_Final::prepareSettings(Settings *settings){
 * This method handles keyboard clicks.  Clicking 'r' will reverse the order of the list, 
 * clicking '?' will close or open the help textbox, and clicking 'c' will cycle the list.
 * 
+* Heavily based on Cinder's Chapter 3 Online Source for "Influence"
 */
 void Brush_Royal_Final::keyDown(KeyEvent event){
 	if(event.getChar() == 'r'){
@@ -121,6 +126,8 @@ void Brush_Royal_Final::draw()
 	int data;
 	for(int i = 0; i < 5; i++){
 		//can't get getData() to work!!!
+
+		// getData() idea is from CBMiami019 but I updated it to work with my structure
 		data = list->getData(i);
 		if(data == 1){
 			gl::color(Color(0,0,1));

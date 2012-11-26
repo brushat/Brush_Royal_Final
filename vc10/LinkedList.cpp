@@ -1,3 +1,19 @@
+/** 
+* @file Brush_Royal_FinalApp
+* 
+* @author Adam Brush
+* @date 2012-09-23
+* 
+* @note This file is (c) 2012. It is licensed under the
+* CC BY 3.0 licenses (http://creativecommons.org/licenses/by/3.0/),
+* which means you are free to use, share, and remix it as long as you
+* give attribution. Commercial uses are allowed.
+* 
+* 
+* Implementation, specifically the framework, loosely based on CBMiami019's 
+* implementation for a singularly linked list
+*/
+
 #include "cinder/app/AppBasic.h"
 #include "cinder/gl/gl.h"
 #include "Resources.h"
@@ -40,6 +56,8 @@ void LinkedList::addNode(int info){
 * Finds the data point (type int) of the node at that index
 * in the list.  Not quite working right yet.  Only returns 1, 2, or 4.
 * 
+* This was based loosely off of CBMiami019's singular link implementation for getData, however 
+* mine is obviously meant to be used with a doubly linked circular list.
 */
 int LinkedList::getData(int index){
 	int i = 0;
@@ -55,6 +73,9 @@ int LinkedList::getData(int index){
 /*
 * Cycles through the list moving each node one place to the right
 * and making the tail become the head
+* 
+* This part was based on CBMiami's next_in_list() function however,
+* mine is meant to be used for the doubly linked list structure I have implemented
 */
 void LinkedList::cycle(){
 	if(head_ != NULL){
